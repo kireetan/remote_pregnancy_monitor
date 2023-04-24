@@ -1,0 +1,22 @@
+import requests
+
+url = 'https://accounts.zoho.in/oauth/v2/token'
+request_parameters = {'grant_type': 'authorization_code',
+    'client_id': '1000.YN1L97B5W86JFF15N8D4NTCH0HF69Y', 
+    'client_secret': 'cf73f9fcd74721c0c07c3a7a5dddcd4a6080af84d4', 
+    'redirect_uri': 'https://google.com', 
+    'code': '1000.5cf6a4829f68ae8ff2c98bd622c6a2d2.8983d3eb3aed45302c84f58fa11a99d5'}
+    
+
+def get_refresh_token():
+    res = requests.post(url, request_parameters)
+    json_data = res.json()
+    refresh_token = json_data["refresh_token"]
+
+    f = open("temp_file.txt", "x")
+    f.close()
+    f = open("temp_file.txt", "w")
+    f.write(refresh_token)
+    f.close()
+    return refresh_token
+
